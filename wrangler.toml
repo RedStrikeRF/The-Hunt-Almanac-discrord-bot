@@ -1,4 +1,4 @@
-name = "hunt-showdown-bot"
+name = "the-hunt-almanac-discrord-bot"
 main = "src/server.ts"
 compatibility_date = "2024-09-01"
 compatibility_flags = ["nodejs_compat"]
