@@ -1,0 +1,19 @@
+name = "hunt-showdown-bot"
+main = "src/server.ts"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Secrets (set via `wrangler secret put <NAME>`, never committed):
+#   DISCORD_PUBLIC_KEY   - Discord application public key, used to verify interaction signatures
+#   DISCORD_TOKEN        - Discord bot token, used only by src/register-commands.ts
+#   DISCORD_APPLICATION_ID - Discord application (client) ID
+#   STEAM_API_KEY        - Steam Web API key, used to resolve vanity URLs to SteamID64
+
+# Optional KV namespace for caching Bayou Ledger lookups across requests.
+# Create with `wrangler kv namespace create STATS_CACHE` and paste the id below.
+# If left unconfigured, src/lib/bayouledger.ts falls back to an in-memory Map
+# (which is only reused across requests within the same isolate, so KV is
+# recommended for production).
+# [[kv_namespaces]]
+# binding = "STATS_CACHE"
+# id = "REPLACE_WITH_KV_NAMESPACE_ID"
