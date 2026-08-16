@@ -1,0 +1,15 @@
+# Скопируйте в .dev.vars и заполните реальными значениями.
+# .dev.vars в .gitignore — никогда не коммитьте настоящие секреты.
+
+# Discord Developer Portal → ваше приложение → General Information → Public Key
+DISCORD_PUBLIC_KEY=
+
+# Discord Developer Portal → ваше приложение → Bot → Reset Token
+# (нужен только для локального запуска src/register-commands.ts)
+DISCORD_TOKEN=
+
+# Discord Developer Portal → ваше приложение → General Information → Application ID
+DISCORD_APPLICATION_ID=
+
+# https://steamcommunity.com/dev/apikey — бесплатно, требует домен (можно указать localhost)
+STEAM_API_KEY=
