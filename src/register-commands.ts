@@ -1,10 +1,30 @@
 // This file runs under Node (via `tsx`), not the Workers runtime, so it
 // needs `process` — declared minimally here rather than pulling in
 // @types/node, which would otherwise clash with @cloudflare/workers-types.
+// `fs` is loaded dynamically as `any` for the same reason (a static
+// `import`/`declare module "fs"` needs @types/node to typecheck cleanly).
 declare const process: {
   env: Record<string, string | undefined>;
   exit(code: number): never;
 };
+
+// `wrangler dev` loads .dev.vars automatically, but this is a plain Node
+// script, so read it ourselves for local convenience. Values already set
+// in the shell environment take precedence.
+async function loadDevVars(): Promise<void> {
+  const fsModuleName = "fs"; // not a literal in the import() call, so tsc doesn't try to resolve types for it
+  const fs: any = await import(fsModuleName);
+  if (!fs.existsSync(".dev.vars")) return;
+  for (const line of fs.readFileSync(".dev.vars", "utf8").split("\n") as string[]) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq === -1) continue;
+    const key = trimmed.slice(0, eq).trim();
+    const value = trimmed.slice(eq + 1).trim();
+    if (process.env[key] === undefined) process.env[key] = value;
+  }
+}
 
 const commands = [
   {
@@ -46,6 +66,8 @@ const commands = [
 ];
 
 async function main() {
+  await loadDevVars();
+
   const token = process.env.DISCORD_TOKEN;
   const applicationId = process.env.DISCORD_APPLICATION_ID;
 
