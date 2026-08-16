@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "compiledAt": "2026-08-16",
+    "source": "Скомпилировано вручную из открытых данных вики Hunt: Showdown и общих знаний об игре. Два community-датасета, предложенных как источник (dearvoodoo/Hunt-Showdown-API и neumanf/hunt-showdown-api), были проверены перед адаптацией: первый содержит только одну демонстрационную запись на файл (1 оружие, 1 инструмент, 1 расходник) вместо полного каталога, второй — заготовка C#/EF API без встроенных данных. Ни один не давал полного списка предметов для прямой адаптации, поэтому список ниже составлен вручную.",
+    "disclaimer": "Стоимость Weapon Capacity указана по приблизительным тирам размера оружия (1-5), категории и состав расходников собраны по памяти и могут не совпадать с текущим состоянием игры после балансных патчей. Перед использованием в турнирных/соревновательных условиях сверьте вручную с внутриигровым экраном лоадаута или официальной вики.",
+    "tarotCardsNote": "Раздел Tarot Cards заполнен условными названиями (карты младших арканов) как заглушка под категорию расходников из ТЗ — точный список карт и их эффектов в игре не проверялся и требует ручной сверки перед использованием."
+  },
+  "weapons": [
+    { "id": "nagant_m1895", "name": "Nagant M1895", "capacityCost": 1, "meleeOnly": false },
+    { "id": "caldwell_pax", "name": "Caldwell Pax", "capacityCost": 1, "meleeOnly": false },
+    { "id": "uppercut", "name": "Uppercut", "capacityCost": 2, "meleeOnly": false },
+    { "id": "deringer", "name": "Deringer", "capacityCost": 1, "meleeOnly": false },
+    { "id": "drilling", "name": "Drilling", "capacityCost": 2, "meleeOnly": false },
+    { "id": "conversion_cyclone", "name": "Conversion Cyclone", "capacityCost": 1, "meleeOnly": false },
+    { "id": "nagant_officer_carbine", "name": "Nagant Officer Carbine", "capacityCost": 3, "meleeOnly": false },
+    { "id": "winfield_m1873", "name": "Winfield M1873", "capacityCost": 2, "meleeOnly": false },
+    { "id": "winfield_terminus", "name": "Winfield Terminus", "capacityCost": 3, "meleeOnly": false },
+    { "id": "lebel_1886", "name": "Lebel 1886", "capacityCost": 3, "meleeOnly": false },
+    { "id": "lebel_1886_recharge", "name": "Lebel 1886 Recharge", "capacityCost": 3, "meleeOnly": false },
+    { "id": "vetterli_1871", "name": "Vetterli 1871", "capacityCost": 3, "meleeOnly": false },
+    { "id": "vetterli_1871_cyclone", "name": "Vetterli 1871 Cyclone", "capacityCost": 3, "meleeOnly": false },
+    { "id": "martini_henry_ic1", "name": "Martini-Henry IC1", "capacityCost": 3, "meleeOnly": false },
+    { "id": "sparks_lrr", "name": "Sparks LRR", "capacityCost": 4, "meleeOnly": false },
+    { "id": "sparks_pistol", "name": "Sparks Pistol", "capacityCost": 2, "meleeOnly": false },
+    { "id": "mosin_nagant_m1891", "name": "Mosin-Nagant M1891", "capacityCost": 4, "meleeOnly": false },
+    { "id": "mosin_nagant_obrez", "name": "Mosin-Nagant Obrez", "capacityCost": 2, "meleeOnly": false },
+    { "id": "springfield_1866_compact", "name": "Springfield 1866 Compact", "capacityCost": 3, "meleeOnly": false },
+    { "id": "nitro_express_rifle", "name": "Nitro Express Rifle", "capacityCost": 5, "meleeOnly": false },
+    { "id": "bornheim_no3", "name": "Bornheim No. 3", "capacityCost": 4, "meleeOnly": false },
+    { "id": "bornheim_compact", "name": "Bornheim Compact", "capacityCost": 3, "meleeOnly": false },
+    { "id": "romero_77", "name": "Romero 77", "capacityCost": 3, "meleeOnly": false },
+    { "id": "crown_king_auto5", "name": "Crown & King Auto-5", "capacityCost": 4, "meleeOnly": false },
+    { "id": "copeland_reaper", "name": "Copeland Reaper", "capacityCost": 4, "meleeOnly": false },
+    { "id": "combat_axe", "name": "Боевой топор", "capacityCost": 1, "meleeOnly": true },
+    { "id": "sabre_kukri", "name": "Sabre-Kukri", "capacityCost": 1, "meleeOnly": true },
+    { "id": "katana", "name": "Катана", "capacityCost": 1, "meleeOnly": true }
+  ],
+  "tools": [
+    { "id": "med_kit", "name": "Med Kit" },
+    { "id": "bear_trap", "name": "Bear Trap" },
+    { "id": "big_bear_trap", "name": "Big Bear Trap" },
+    { "id": "throwing_knives", "name": "Throwing Knives" },
+    { "id": "hand_crossbow", "name": "Hand Crossbow" },
+    { "id": "decoy", "name": "Decoy" },
+    { "id": "chaos_bomb_launcher", "name": "Chaos Bomb Launcher" },
+    { "id": "marking_flare_gun", "name": "Marking Flare Gun" }
+  ],
+  "consumables": {
+    "throwables": [
+      { "id": "fire_bomb", "name": "Fire Bomb" },
+      { "id": "dynamite_bundle", "name": "Dynamite Bundle" },
+      { "id": "frag_bomb", "name": "Frag Bomb" },
+      { "id": "poison_bomb", "name": "Poison Bomb" },
+      { "id": "chaos_bomb", "name": "Chaos Bomb" },
+      { "id": "concertina_bomb", "name": "Concertina Bomb" },
+      { "id": "choke_bomb", "name": "Choke Bomb" },
+      { "id": "flash_bomb", "name": "Flash Bomb" }
+    ],
+    "placeables": [
+      { "id": "trip_mine", "name": "Trip Mine" },
+      { "id": "poison_trap", "name": "Poison Trap" },
+      { "id": "concertina_trap", "name": "Concertina Trap" },
+      { "id": "sticky_bomb_trap", "name": "Sticky Bomb Trap" },
+      { "id": "alert_trap", "name": "Alert Trap" }
+    ],
+    "shots": [
+      { "id": "vitality_shot", "name": "Vitality Shot" },
+      { "id": "regeneration_shot", "name": "Regeneration Shot" },
+      { "id": "stamina_shot", "name": "Stamina Shot" },
+      { "id": "antidote_shot", "name": "Antidote Shot" },
+      { "id": "immolation_shot", "name": "Immolation Shot" },
+      { "id": "poison_sense_tonic", "name": "Poison Sense Tonic" }
+    ],
+    "tarotCards": [
+      { "id": "tarot_hermit", "name": "The Hermit" },
+      { "id": "tarot_tower", "name": "The Tower" },
+      { "id": "tarot_hanged_man", "name": "The Hanged Man" },
+      { "id": "tarot_wheel", "name": "Wheel of Fortune" },
+      { "id": "tarot_death", "name": "Death" },
+      { "id": "tarot_fool", "name": "The Fool" },
+      { "id": "tarot_star", "name": "The Star" },
+      { "id": "tarot_judgement", "name": "Judgement" }
+    ]
+  }
+}
