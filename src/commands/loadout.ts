@@ -1,5 +1,6 @@
 import { InteractionResponseType } from "discord-interactions";
 import { pickWeapons, weaponCapacity } from "../lib/weapons";
+import { CATEGORY_LABELS, pickGear } from "../lib/gear";
 
 interface CommandOption {
   name: string;
@@ -21,14 +22,12 @@ function parseExcluded(options: CommandOption[]): Set<string> {
   );
 }
 
-// TODO(stage 5): подбор снаряжения (8 слотов, лимиты по категориям расходников).
 export function handleLoadout(options: CommandOption[]) {
   const quartermaster = getOption<boolean>(options, "quartermaster") ?? false;
   const meleeOnly = getOption<boolean>(options, "melee_only") ?? false;
   const excluded = parseExcluded(options);
 
   const weapons = pickWeapons({ quartermaster, meleeOnly, excluded });
-
   if (weapons.length === 0) {
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -39,14 +38,31 @@ export function handleLoadout(options: CommandOption[]) {
     };
   }
 
+  const gear = pickGear({ excluded });
+  if (gear.length === 0) {
+    return {
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: "Не удалось подобрать снаряжение — все предметы исключены фильтром exclude.",
+      },
+    };
+  }
+
   const capacity = weaponCapacity(quartermaster);
   const used = weapons.reduce((sum, w) => sum + w.capacityCost, 0);
   const weaponLines = weapons.map((w) => `• **${w.name}** (${w.capacityCost})`).join("\n");
+  const gearLines = gear.map((slot) => `• **${slot.item.name}** _(${CATEGORY_LABELS[slot.kind]})_`).join("\n");
 
   return {
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
-      content: `**Оружие** (Weapon Capacity ${used}/${capacity}):\n${weaponLines}\n\n_Снаряжение будет добавлено на следующем этапе разработки._`,
+      content: [
+        `**Оружие** (Weapon Capacity ${used}/${capacity}${quartermaster ? ", Quartermaster" : ""}):`,
+        weaponLines,
+        "",
+        `**Снаряжение** (${gear.length}/8):`,
+        gearLines,
+      ].join("\n"),
     },
   };
 }
